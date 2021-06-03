@@ -1,15 +1,16 @@
 #include <stdio.h>
 
-void swapper (int *array, int n) {
+void swapper (int *array, int n, int lastNum) {
     int tmp = array[n];
     if (tmp < array[2 * n]) {
         array[n] = array[2 * n];
         array[2 * n] = tmp;
     }
+    if (2 * n + 1 > lastNum) return;
     tmp = array[n];
-    if (tmp < array[2 * n - 1]) {
-        array[n] = array[2 * n - 1];
-        array[2 * n - 1] = tmp;
+    if (tmp < array[2 * n + 1]) {
+        array[n] = array[2 * n + 1];
+        array[2 * n + 1] = tmp;
     }
 }
 
@@ -18,7 +19,7 @@ void heapSort (int *array, int arraySize) {
     while (lastNum > 0) {
         int root = lastNum / 2;
         while (root >= 1) {
-            swapper(array, root);
+            swapper(array, root, lastNum);
             root--;
         }
         int temp = array[1];
@@ -31,7 +32,7 @@ void heapSort (int *array, int arraySize) {
 }
 
 int main () {
-    int array[9] = {0, 4, -34274, -10, 2, 9, 99, 3, 5};
+    int array[] = {0, 4, -34274, -10, 2, 9, 99, 3};
     int arraySize = sizeof(array) / sizeof(int);
     heapSort(array, arraySize);
     for (int i = 1; i < arraySize; i++) {
