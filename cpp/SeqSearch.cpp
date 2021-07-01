@@ -1,12 +1,12 @@
 #include <iostream>
-#include <array>
+#include <vector>
 using namespace std;
 
-int seqSearch (int array[], int target_number) {
-    int array_length = *(&array + 1) - array;
+int seqSearch (vector<int> v, int target_number) {
+    int array_length = v.size();
     int iterator = -1;
     while (iterator++ < array_length) {
-        if (array[iterator] == target_number) {
+        if (v[iterator] == target_number) {
             return iterator;
         }
     }
@@ -14,8 +14,8 @@ int seqSearch (int array[], int target_number) {
 }
 
 int main () {
-    int array[] = {1, 2, 4, 5, 3, 10, -3};
-    int target_index = seqSearch(array, 3);
+    vector<int> v = {1, 2, 4, 6, 3, -2, 10};
+    int target_index = seqSearch(v, 3);
     cout << "target_index: ";
-    cout << target_index;
+    cout << target_index << endl;
 }
